@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Theme Editor by Novelew - Customize your themes with ease">
+    <meta name="theme-color" content="#ff3333">
+    <title>Theme Editor by Novelew</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="left-panel glass">
+            <div class="profile">
+                <div class="avatar-container">
+                    <img src="avatar.gif" alt="Novelew's Avatar" class="avatar" loading="lazy">
+                    <div class="avatar-glow"></div>
+                </div>
+                <h1 class="nickname">Novelew</h1>
+                <p class="bio">Theme Editor Creator</p>
+            </div>
+            <nav class="social-buttons">
+                <a href="https://funpay.com/users/6754203/" target="_blank" rel="noopener" class="btn">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span>Funpay</span>
+                </a>
+                <a href="https://discord.com/users/1239309420220125216" target="_blank" rel="noopener" class="btn">
+                    <i class="ph ph-discord-logo"></i>
+                    <span>Discord</span>
+                </a>
+                <a href="https://t.me/Novelew" target="_blank" rel="noopener" class="btn">
+                    <i class="ph ph-telegram-logo"></i>
+                    <span>Telegram</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="right-panel">
+            <header class="file-controls glass">
+                <div class="file-input-wrapper">
+                    <label for="fileInput" class="btn primary">
+                        <i class="ph ph-upload-simple"></i>
+                        <span>Load Theme</span>
+                    </label>
+                    <input type="file" id="fileInput" accept=".file" class="hidden-input">
+                </div>
+                <button class="btn" onclick="saveTheme()">
+                    <i class="ph ph-download-simple"></i>
+                    <span>Save Theme</span>
+                </button>
+            </header>
+
+            <section class="theme-editor glass" id="themeEditor">
+                <div class="theme-header">
+                    <div class="theme-info">
+                        <div class="input-group">
+                            <label for="themeName">
+                                <i class="ph ph-paint-brush"></i>
+                                Theme Name
+                            </label>
+                            <input type="text" id="themeName" placeholder="Enter theme name">
+                        </div>
+                        <div class="input-group">
+                            <label for="themeAuthor">
+                                <i class="ph ph-user"></i>
+                                Author
+                            </label>
+                            <input type="text" id="themeAuthor" placeholder="Enter author name">
+                        </div>
+                    </div>
+                </div>
+                <div id="themeColors" class="theme-colors">
+                    <!-- Colors will be dynamically added here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Color Picker Modal -->
+    <dialog id="colorPickerModal" class="modal">
+        <div class="modal-content glass">
+            <header class="modal-header">
+                <h3>
+                    <i class="ph ph-paint-brush"></i>
+                    Color Picker
+                </h3>
+                <div class="format-toggle">
+                    <button class="btn format-btn active" data-format="hex">
+                        <i class="ph ph-hash"></i>
+                        HEX
+                    </button>
+                    <button class="btn format-btn" data-format="argb">
+                        <i class="ph ph-sliders"></i>
+                        ARGB
+                    </button>
+                </div>
+            </header>
+
+            <div class="color-picker-container">
+                <div class="picker-section">
+                    <canvas id="colorWheel" width="200" height="200"></canvas>
+                    <div class="slider-container">
+                        <label for="alphaSlider">
+                            <i class="ph ph-transparency-grid"></i>
+                            Alpha
+                        </label>
+                        <input type="range" id="alphaSlider" min="0" max="255" value="255">
+                        <span id="alphaValue">255</span>
+                    </div>
+                </div>
+
+                <div class="color-values">
+                    <div class="preview-container">
+                        <div id="colorPreview" class="color-preview-large"></div>
+                    </div>
+                    <div class="inputs-container hex-inputs">
+                        <div class="input-group">
+                            <label for="hexInput">
+                                <i class="ph ph-hash"></i>
+                                HEX
+                            </label>
+                            <input type="text" id="hexInput" placeholder="#AARRGGBB" maxlength="9">
+                        </div>
+                    </div>
+                    <div class="inputs-container argb-inputs" style="display: none;">
+                        <div class="input-group">
+                            <label for="redInput">
+                                <i class="ph ph-circle-half-fill"></i>
+                                Red
+                            </label>
+                            <input type="number" id="redInput" min="0" max="255" value="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="greenInput">
+                                <i class="ph ph-circle-half-fill"></i>
+                                Green
+                            </label>
+                            <input type="number" id="greenInput" min="0" max="255" value="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="blueInput">
+                                <i class="ph ph-circle-half-fill"></i>
+                                Blue
+                            </label>
+                            <input type="number" id="blueInput" min="0" max="255" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="modal-footer">
+                <button class="btn" id="cancelColor">
+                    <i class="ph ph-x"></i>
+                    Cancel
+                </button>
+                <button class="btn primary" id="applyColor">
+                    <i class="ph ph-check"></i>
+                    Apply
+                </button>
+            </footer>
+        </div>
+    </dialog>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
