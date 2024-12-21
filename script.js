@@ -188,6 +188,7 @@ const alphaValue = document.getElementById('alphaValue');
 const formatBtns = document.querySelectorAll('.format-btn');
 
 let currentColor = { r: 255, g: 0, b: 0, a: 255 };
+let originalColor = null;
 
 // Initialize color wheel
 function initColorWheel() {
@@ -404,6 +405,10 @@ document.getElementById('applyColor').addEventListener('click', () => {
 });
 
 document.getElementById('cancelColor').addEventListener('click', () => {
+    if (originalColor && currentColorItem) {
+        currentColor = { ...originalColor };
+        updateColorDisplay();
+    }
     modal.classList.remove('show');
 });
 
@@ -416,7 +421,8 @@ function initializeColorPicker(colorItem) {
         currentColorItem = colorItem;
         const rgb = hexToRgb(input.value);
         if (rgb) {
-            currentColor = rgb;
+            originalColor = { ...rgb }; // Store original color
+            currentColor = { ...rgb };
             updateColorDisplay();
         }
         modal.classList.add('show');
