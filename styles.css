@@ -39,85 +39,17 @@ body {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
-        padding: 12px;
-        gap: 12px;
     }
     
     .left-panel {
         width: 100% !important;
         border-right: none !important;
         border-bottom: 1px solid var(--accent);
-        margin-bottom: 12px;
-        padding: 16px;
+        margin-bottom: 20px;
     }
     
     .theme-editor {
         grid-template-columns: 1fr !important;
-        padding: 16px;
-    }
-    
-    .file-controls {
-        padding: 16px;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 14px 20px;
-        min-height: 48px;
-    }
-
-    .theme-colors {
-        gap: 12px;
-    }
-
-    .color-item {
-        padding: 12px;
-    }
-
-    .modal-content {
-        width: 90%;
-        max-width: 400px;
-        margin: 20px auto;
-        padding: 16px;
-    }
-
-    .format-toggle {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    input[type="text"],
-    input[type="number"] {
-        font-size: 16px;
-        padding: 12px;
-        min-height: 48px;
-    }
-
-    .color-picker-container {
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .avatar {
-        width: 100px;
-        height: 100px;
-    }
-
-    .nickname {
-        font-size: 20px;
-    }
-}
-
-@media (hover: none) and (pointer: coarse) {
-    .btn,
-    input[type="text"],
-    input[type="number"],
-    .color-item,
-    .format-btn {
-        min-height: 48px;
-        touch-action: manipulation;
     }
 }
 
