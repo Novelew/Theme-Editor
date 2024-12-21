@@ -278,6 +278,9 @@ body {
 }
 
 .btn {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
     background: rgba(15, 15, 19, 0.8);
     color: var(--text);
     border: 2px solid var(--surface-border);
@@ -329,6 +332,12 @@ body {
 .btn.primary:active {
     transform: translateY(0);
     filter: brightness(0.95);
+}
+
+.social-buttons .btn {
+    pointer-events: auto;
+    opacity: 1;
+    cursor: pointer;
 }
 
 .theme-editor {
@@ -744,4 +753,32 @@ body {
     width: 100%;
     justify-content: flex-start;
     padding: 12px 20px;
+}
+
+/* Disable all inputs */
+input,
+input[type="text"],
+input[type="number"],
+input[type="range"],
+#fileInput,
+#themeName,
+#themeAuthor,
+#hexInput,
+#redInput,
+#greenInput,
+#blueInput,
+#alphaSlider {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    user-select: none;
+}
+
+/* Disable color picker interactions */
+#colorWheel,
+.color-preview,
+.color-preview-large {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
